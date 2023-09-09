@@ -16,7 +16,7 @@ let handleDelete = (id, name)=>{
 
 let deleteMember = ()=>{
     deleteDiv[0].style.display = "none"
-    fetch(`/services/members?id=${idOfMemberToBeDeleted}`,{
+    fetch(`/api/members?id=${idOfMemberToBeDeleted}`,{
         "method" : "DELETE"
     })
     .then((res)=>{
@@ -42,7 +42,7 @@ let discard = ()=>{
 }
 
 const fetchData = () => {
-    fetch("/services/members", { method: "GET" })
+    fetch("/api/members", { method: "GET" })
         .then((res) => {
             if(!res.ok){
                 if(res.status===403){
@@ -143,7 +143,7 @@ let handleSubmit = (e)=>{
     formData.append("techStack",form.techStack.value)
     if(file)formData.append("image",file)
     formData.append("id",memberToBeEdited.id)
-    fetch("/services/members", {
+    fetch("/api/members", {
         method: "PUT",
         body: formData,
         credentials : "include"

@@ -16,7 +16,7 @@ let handleDelete = (id, name)=>{
 
 let deleteachievement = ()=>{
     deleteDiv[0].style.display = "none"
-    fetch(`/services/achievements?id=${idOfachievementToBeDeleted}`,{
+    fetch(`/api/achievements?id=${idOfachievementToBeDeleted}`,{
         "method" : "DELETE"
     })
     .then((res)=>{
@@ -44,7 +44,7 @@ let discard = ()=>{
 }
 
 const fetchData = () => {
-    fetch("/services/achievements", { method: "GET" })
+    fetch("/api/achievements", { method: "GET" })
         .then((res) => {
             if(!res.ok){
                 if(res.status===403){
@@ -142,7 +142,7 @@ let handleSubmit = (e)=>{
     formData.append("description", form.description.value)
     if(file)formData.append("image",file)
     formData.append("id",achievementToBeEdited.id)
-    fetch("/services/achievements", {
+    fetch("/api/achievements", {
         method: "PUT",
         body: formData,
         credentials : "include"

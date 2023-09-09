@@ -4,7 +4,7 @@
 
 ## Login (POST)
 - This route is for logging in as admin.
-``` baseUrl/services/login ```
+``` baseUrl/api/login ```
 
 Body:
 - username: required
@@ -12,7 +12,7 @@ Body:
 
 Command:
 ```
-curl --location 'baseUrl/services/login' 
+curl --location 'baseUrl/api/login' 
 --header 'Content-Type: application/json' 
 --data '{
     "username":"username_of_admin",
@@ -42,18 +42,18 @@ curl --location 'baseUrl/services/login'
 # Projects API
 
 ## Get Projects (GET)
-``` baseUrl/services/projects```
+``` baseUrl/api/projects```
 
 Command:
 ```
-curl --location 'baseUrl/services/projects' 
+curl --location 'baseUrl/api/projects' 
 ```
 
 <hr>
 <br>
 
 ## Post Projects (POST)
-``` baseUrl/services/projects```
+``` baseUrl/api/projects```
 
 Body:
 - image: required (the file to be uploaded in multipart form data)
@@ -62,7 +62,7 @@ Body:
 
 Command:
 ```
-curl --location 'baseUrl/services/projects' 
+curl --location 'baseUrl/api/projects' 
 --header 'Content-Type: multipart/form-data' 
 --header 'Cookie: ROBOSOC_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.fzKy1H_vgaWe4c7fXtJz82iT7AFaxqO2kCWAPVR92Dg'
 --data '{
@@ -75,7 +75,7 @@ curl --location 'baseUrl/services/projects'
 <br>
 
 ## Put Projects (PUT)
-``` baseUrl/services/projects```
+``` baseUrl/api/projects```
 
 Body:
 - id : required
@@ -85,7 +85,7 @@ Body:
 
 Command:
 ```
-curl --location 'baseUrl/services/projects' 
+curl --location 'baseUrl/api/projects' 
 --header 'Content-Type: multipart/form-data' 
 --header 'Cookie: ROBOSOC_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.fzKy1H_vgaWe4c7fXtJz82iT7AFaxqO2kCWAPVR92Dg'
 --data '{
@@ -98,14 +98,14 @@ curl --location 'baseUrl/services/projects'
 <br>
 
 ## Delete Projects (DELETE)
-``` baseUrl/services/projects```
+``` baseUrl/api/projects```
 
 Body:
 - id : required
 
 Command:
 ```
-curl --location 'baseUrl/services/projects' 
+curl --location 'baseUrl/api/projects' 
 --header 'Cookie: ROBOSOC_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.fzKy1H_vgaWe4c7fXtJz82iT7AFaxqO2kCWAPVR92Dg'
 --data '{
     "id" : "id_of_project_to_be_deleted"
@@ -115,18 +115,18 @@ curl --location 'baseUrl/services/projects'
 # Achievements API
 
 ## Get Achievements (GET)
-``` baseUrl/services/achievements```
+``` baseUrl/api/achievements```
 
 Command:
 ```
-curl --location 'baseUrl/services/achievements' 
+curl --location 'baseUrl/api/achievements' 
 ```
 
 <hr>
 <br>
 
 ## Post Achievements (POST)
-``` baseUrl/services/achievements```
+``` baseUrl/api/achievements```
 
 Body:
 - image: required (the file to be uploaded in multipart form data)
@@ -135,7 +135,7 @@ Body:
 
 Command:
 ```
-curl --location 'baseUrl/services/achievements' 
+curl --location 'baseUrl/api/achievements' 
 --header 'Content-Type: multipart/form-data' 
 --header 'Cookie: ROBOSOC_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.fzKy1H_vgaWe4c7fXtJz82iT7AFaxqO2kCWAPVR92Dg'
 --data '{
@@ -148,7 +148,7 @@ curl --location 'baseUrl/services/achievements'
 <br>
 
 ## Put Achievements (PUT)
-``` baseUrl/services/achievements```
+``` baseUrl/api/achievements```
 
 Body:
 - id : required
@@ -158,7 +158,7 @@ Body:
 
 Command:
 ```
-curl --location 'baseUrl/services/achievements' 
+curl --location 'baseUrl/api/achievements' 
 --header 'Content-Type: multipart/form-data' 
 --header 'Cookie: ROBOSOC_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.fzKy1H_vgaWe4c7fXtJz82iT7AFaxqO2kCWAPVR92Dg'
 --data '{
@@ -171,14 +171,14 @@ curl --location 'baseUrl/services/achievements'
 <br>
 
 ## Delete Achievements (DELETE)
-``` baseUrl/services/achievements```
+``` baseUrl/api/achievements```
 
 Body:
 - id : required
 
 Command:
 ```
-curl --location 'baseUrl/services/achievements' 
+curl --location 'baseUrl/api/achievements' 
 --header 'Cookie: ROBOSOC_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.fzKy1H_vgaWe4c7fXtJz82iT7AFaxqO2kCWAPVR92Dg'
 --data '{
     "id" : "id_of_achievement_to_be_deleted"
@@ -187,18 +187,18 @@ curl --location 'baseUrl/services/achievements'
 # Members API
 
 ## Get Members (GET)
-``` baseUrl/services/members```
+``` baseUrl/api/members```
 
 Command:
 ```
-curl --location 'baseUrl/services/members' 
+curl --location 'baseUrl/api/members' 
 ```
 
 <hr>
 <br>
 
 ## Post Members (POST)
-``` baseUrl/services/members```
+``` baseUrl/api/members```
 
 Body:
 - image: required (the file to be uploaded in multipart form data)
@@ -208,7 +208,7 @@ Body:
 
 Command:
 ```
-curl --location 'baseUrl/services/members' 
+curl --location 'baseUrl/api/members' 
 --header 'Content-Type: multipart/form-data' 
 --header 'Cookie: ROBOSOC_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.fzKy1H_vgaWe4c7fXtJz82iT7AFaxqO2kCWAPVR92Dg'
 --data '{
@@ -222,7 +222,7 @@ curl --location 'baseUrl/services/members'
 <br>
 
 ## Put Members (PUT)
-``` baseUrl/services/members```
+``` baseUrl/api/members```
 
 Body:
 - id : required
@@ -233,7 +233,7 @@ Body:
 
 Command:
 ```
-curl --location 'baseUrl/services/members' 
+curl --location 'baseUrl/api/members' 
 --header 'Content-Type: multipart/form-data' 
 --header 'Cookie: ROBOSOC_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.fzKy1H_vgaWe4c7fXtJz82iT7AFaxqO2kCWAPVR92Dg'
 --data '{
@@ -248,14 +248,14 @@ curl --location 'baseUrl/services/members'
 <br>
 
 ## Delete Members (DELETE)
-``` baseUrl/services/members```
+``` baseUrl/api/members```
 
 Body:
 - id : required
 
 Command:
 ```
-curl --location 'baseUrl/services/members' 
+curl --location 'baseUrl/api/members' 
 --header 'Cookie: ROBOSOC_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.fzKy1H_vgaWe4c7fXtJz82iT7AFaxqO2kCWAPVR92Dg'
 --data '{
     "id" : "id_of_member_to_be_deleted"
