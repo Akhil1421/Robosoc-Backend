@@ -18,4 +18,6 @@ curl --location 'base_url/services/login' \
     "username":"username_of_admin",
     "password":"password_for_admin_control"
 }'
+```
 
+# Projects API
