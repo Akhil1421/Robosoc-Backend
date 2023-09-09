@@ -1,5 +1,7 @@
 <center><h1>Robosoc API Documentation</h1></center>
 
+```baseUrl = https://robosoc-backend.onrender.com/```
+
 # Auth API
 
 ## Login (POST)
