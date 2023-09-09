@@ -9,7 +9,7 @@ const uploadImage = require('../middlewares/uploadImage')
 
 router.route('/login').post(login)
 
-router.route('/members').get(checkAuthenticity,getAllMembers).post(checkAuthenticity,uploadImage.single('image'),addNewMember)
+router.route('/members').get(getAllMembers).post(checkAuthenticity,uploadImage.single('image'),addNewMember)
 .put(checkAuthenticity,uploadImage.single('image'),editMember).delete(checkAuthenticity,deleteMember)
 
 router.route("/projects").get(getAllProjects).post(checkAuthenticity,uploadImage.single('image'),addNewProject)
