@@ -21,8 +21,8 @@ const getAllMembers = async(req,res)=>{
 
 const addNewMember = async(req,res)=>{
     try {
-        let {name,position,techStack} = req.body
-        if(!name || !position || !techStack){
+        let {name,position,techStack,passOutYear,instaLink,githubLink,linkedinLink} = req.body
+        if(!name || !position || !techStack || !passOutYear){
             if(req.filename===undefined){
                 return res.status(400).json({message : 'Full details not provided'})
             }
@@ -43,7 +43,11 @@ const addNewMember = async(req,res)=>{
             name,
             position : position.toLowerCase(),
             techStack,
-            image : req.filename
+            image : req.filename,
+            passOutYear,
+            instaLink,
+            githubLink,
+            linkedinLink
         })
         return res.status(201).json({msg: 'Member added'})
     } catch (error) {
@@ -63,7 +67,7 @@ const addNewMember = async(req,res)=>{
 
 const editMember = async(req,res)=>{
     try {
-        let {id,name,position,techStack} = req.body
+        let {id,name,position,techStack,instaLink,linkedinLink,githubLink,passOutYear} = req.body
         // console.log(req.body)
         let memberToBeEdited = await individuals.findById(id)
         if(!memberToBeEdited){
@@ -99,6 +103,18 @@ const editMember = async(req,res)=>{
         if(position){
             memberToBeEdited.position = position.toLowerCase()
         }
+        if(passOutYear){
+            memberToBeEdited.passOutYear = passOutYear
+        }
+        if(githubLink){
+            memberToBeEdited.githubLink = githubLink
+        }
+        if(linkedinLink){
+            memberToBeEdited.linkedinLink = linkedinLink
+        }
+        if(instaLink){
+            memberToBeEdited.instaLink = instaLink
+        }
         await memberToBeEdited.save()
         return res.status(200).json({msg:"Member updated successfully"})
     } catch (error) {
@@ -110,7 +126,7 @@ const editMember = async(req,res)=>{
 const deleteMember = async(req,res)=>{
     try {
         let {id} = req.query
-        console.log(id)
+        // console.log(id)
         let memberToBeDeleted = await individuals.findByIdAndDelete(id)
         if(!memberToBeDeleted){
             return res.status(404).json({msg:"No such member"})
@@ -236,7 +252,7 @@ const deleteProject = async(req,res)=>{
 //achievements
 const getAllAchievements = async(req,res)=>{
     try {
-        let achievementsOfSociety = await achievements.find({})
+        let achievementsOfSociety = await achievements.find({}).sort({year : 1})
         return res.status(200).json({data : achievementsOfSociety})
     } catch (error) {
         return res.status(500).json({error: error.message})
@@ -245,8 +261,8 @@ const getAllAchievements = async(req,res)=>{
 
 const addNewAchievement = async(req,res)=>{
     try {
-        let {name,description} = req.body
-        if(!name || !description){
+        let {name,description,year} = req.body
+        if(!name || !description || !year){
             if(req.filename===undefined){
                 return res.status(400).json({message : 'Full details not provided'})
             }
@@ -266,7 +282,8 @@ const addNewAchievement = async(req,res)=>{
         let achievement = await achievements.create({
             heading : name,
             description : description,
-            image : req.filename
+            image : req.filename,
+            year : year
         })
         return res.status(201).json({msg : "Achievement added successfully"})
     } catch (error) {
@@ -276,7 +293,7 @@ const addNewAchievement = async(req,res)=>{
 
 const editAchievement = async(req,res)=>{
     try{
-        let {id,name,description} = req.body
+        let {id,name,description,year} = req.body
         let achievementToBeEdited = await achievements.findById(id)
         if(!achievementToBeEdited){
             if(req.filename){
@@ -307,6 +324,9 @@ const editAchievement = async(req,res)=>{
         }
         if(description){
             achievementToBeEdited.description = description
+        }
+        if(year){
+            achievementToBeEdited.year = year
         }
         await achievementToBeEdited.save()
         return res.status(200).json({msg : "Achievement updated successfully"})

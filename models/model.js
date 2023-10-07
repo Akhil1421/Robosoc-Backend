@@ -17,6 +17,22 @@ const dataOfIndividual = new mongoose.Schema({
     image : {
         type : String,
         default : ""
+    },
+    linkedinLink : {
+        type : String,
+        default : ""
+    },
+    githubLink : {
+        type : String,
+        default : ""
+    },
+    instaLink : {
+        type : String,
+        default : ""
+    },
+    passOutYear : {
+        type : Number,
+        required : true
     }
 })
 
@@ -47,6 +63,10 @@ const achievementsOfSociety = new mongoose.Schema({
     image : {
         type : String,
         default : ""
+    },
+    year : {
+        type : Number,
+        required : true,
     }
 })
 

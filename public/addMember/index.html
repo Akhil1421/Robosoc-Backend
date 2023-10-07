@@ -15,6 +15,10 @@
             <input type = "text" placeholder="Tech Stack" name="techStack">
             <input type = "file" placeholder="Image" id="inputFile"  onchange="handleChange(event)" name="imgFile">
             <input type="text" placeholder="Image" onclick="handleClick()"name="file" id="fileName" readonly="true">
+            <input type = "number" placeholder="Passout Year" required = true name = "passOutYear">
+            <input type = "url" placeholder="Linkedin Link" name="linkedinLink">
+            <input type = "url" placeholder="Github Link" name="githubLink">
+            <input type = "url" placeholder="Insta Link" name="instaLink">
             <button type="submit">Add</button>
         </form>
     </div>
@@ -46,11 +50,15 @@
             let formData = new FormData()
             let form = e.target
             formData.append("name",form.name.value)
-            formData.append("position", form.position.value)
-            formData.append("techStack",form.techStack.value)
+            formData.append("position", form.position.value.trim())
+            formData.append("techStack",form.techStack.value.trim())
             formData.append("image",file)
+            formData.append("passOutYear",form.passOutYear.value)
+            formData.append("linkedinLink",form.linkedinLink.value)
+            formData.append("instaLink",form.instaLink.value)
+            formData.append("githubLink",form.githubLink.value)
             if(!form.name.value || !form.position.value || !form.techStack.value || !file){
-                alert("Fill all the details")
+                alert("Fill all the mandatory details")
                 return
             }
             fetch("/api/members", {

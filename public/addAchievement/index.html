@@ -14,6 +14,7 @@
             <textarea type = "text" placeholder="Description" name="description" class="textarea"></textarea>
             <input type = "file" placeholder="Image" id="inputFile"  onchange="handleChange(event)" name="imgFile">
             <input type="text" placeholder="Image" onclick="handleClick()"name="file" id="fileName" readonly="true">
+            <input type="number" placeholder="Year" name="year">
             <button type="submit">Add</button>
         </form>
     </div>
@@ -44,13 +45,14 @@
             e.preventDefault()
             let formData = new FormData()
             let form = e.target
-            formData.append("name",form.name.value)
-            formData.append("description", form.description.value)
-            formData.append("image",file)
-            if(!form.name.value || !form.description.value || !file){
+            if(!form.name.value || !form.description.value || !file || !form.year.value){
                 alert("Fill all the details")
                 return
             }
+            formData.append("name",form.name.value)
+            formData.append("description", form.description.value)
+            formData.append("image",file)
+            formData.append("year",form.year.value)
             fetch("/api/achievements", {
                 method: "POST",
                 body: formData,

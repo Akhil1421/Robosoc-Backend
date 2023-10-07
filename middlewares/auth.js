@@ -18,10 +18,10 @@ const checkAuthenticity = (req,res,next)=>{
 
 const login = (req,res)=>{
     try {
-        let {username, password} = req.body
+        let {username, password} = req.body 
         if(username===process.env.ADMIN && password===process.env.PASSWORD){
             let jwtToken = jwt.sign({username},process.env.SECRET_KEY,{expiresIn: "1h"})
-            res.cookie('ROBOSOC_TOKEN', jwtToken, {maxAge: 60 * 60 * 1000, httpOnly : true });//age of cookie = 1hour
+            res.cookie('ROBOSOC_TOKEN', jwtToken, {maxAge: 60 * 60 * 1000 * 24, httpOnly : true });//age of cookie = 1hour
             return res.status(200).json({msg : "Login successful"})
         }
         return res.status(401).json({msg : "Unauthorized Access"})

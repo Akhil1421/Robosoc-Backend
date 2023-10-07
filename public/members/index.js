@@ -65,7 +65,8 @@ const fetchData = () => {
                     </div>
                     <div class="options">
                     <!--Edit--icon-->                        
-                        <div onclick="handleEdit('${data._id}', '${data.name}', '${data.position}', '${data.techStack}', '${data.image}')" id="edit">
+                        <div onclick="handleEdit('${data._id}', '${data.name}', '${data.position}', '${data.techStack}', '${data.image}', 
+                        '${data.passOutYear}', '${data.linkedinLink}', '${data.githubLink}', '${data.instaLink}')" id="edit">
                             <svg xmlns="http://www.w3.org/2000/svg" id="edit" width="20" height="20" fill="#4d4848" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -99,18 +100,26 @@ fetchData()
 //edit form
 let editModalDiv = document.querySelectorAll('.modal')[1]
 let memberToBeEdited = ''
-let handleEdit = (id,name,position,techStack,image)=>{
+let handleEdit = (id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink)=>{
     editModalDiv.style.display = "flex"
     const form = document.querySelector('.form');
     const nameInput = form.querySelector('input[name="name"]');
     const positionInput = form.querySelector('input[name="position"]');
     const techStackInput = form.querySelector('input[name="techStack"]');
     const filename = form.querySelector('input[name="file"]');
+    const passOutYearInput = form.querySelector('input[name="passOutYear"]');
+    const linkedinInput = form.querySelector('input[name="linkedinLink"]');
+    const githubInput = form.querySelector('input[name="githubLink"]');
+    const instaInput = form.querySelector('input[name="instaLink"]');
     nameInput.value = name;
     positionInput.value = position[0].toUpperCase() + position.substr(1);
     techStackInput.value = techStack;
-    filename.value = image
-    memberToBeEdited = {id,name,position,techStack,image}
+    filename.value = image;
+    passOutYearInput.value = passOutYear
+    linkedinInput.value = linkedinLink
+    githubInput.value = githubLink
+    instaInput.value = instaLink
+    memberToBeEdited = {id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink}
 }
 editModalDiv.style.display = "none"
 let x = document.getElementById('inputFile')
@@ -141,6 +150,10 @@ let handleSubmit = (e)=>{
     formData.append("name",form.name.value)
     formData.append("position", form.position.value)
     formData.append("techStack",form.techStack.value)
+    formData.append("passOutYear",form.passOutYear.value)
+    formData.append("linkedinLink",form.linkedinLink.value)
+    formData.append("instaLink",form.instaLink.value)
+    formData.append("githubLink",form.githubLink.value)
     if(file)formData.append("image",file)
     formData.append("id",memberToBeEdited.id)
     fetch("/api/members", {
