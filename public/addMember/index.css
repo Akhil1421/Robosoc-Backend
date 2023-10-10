@@ -44,6 +44,7 @@ select{
     min-width: 100%;
     padding: 3px;
     min-height: 4vh;
+    cursor: pointer;
 } 
 button{
     padding: 2px 4px;
@@ -54,6 +55,7 @@ button{
     border: #fd850e 1px solid;
     border-radius: 0.5rem;
     cursor: pointer;
+    margin-bottom: 1.5vh;
 }
 input:focus{
     outline: none;

@@ -103,7 +103,8 @@ let editModalDiv = document.querySelectorAll('.modal')[1]
 let memberToBeEdited = ''
 let handleEdit = (index)=>{
     editModalDiv.style.display = "flex"
-    const {_id:id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink,isActive} = members[index]
+    const {_id:id,name,position,techStack,image,passOutYear,
+        linkedinLink,githubLink,instaLink,isActive,company} = members[index]
     const form = document.querySelector('.form');
     const nameInput = form.querySelector('input[name="name"]');
     const positionInput = form.querySelector('select[name="position"]');
@@ -114,6 +115,7 @@ let handleEdit = (index)=>{
     const linkedinInput = form.querySelector('input[name="linkedinLink"]');
     const githubInput = form.querySelector('input[name="githubLink"]');
     const instaInput = form.querySelector('input[name="instaLink"]');
+    const companyInput = form.querySelector('input[name="company"]');
     nameInput.value = name;
     positionInput.value = position;
     techStackInput.value = techStack;
@@ -123,7 +125,8 @@ let handleEdit = (index)=>{
     linkedinInput.value = linkedinLink
     githubInput.value = githubLink
     instaInput.value = instaLink
-    memberToBeEdited = {id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink,isActive}
+    companyInput.value = company
+    memberToBeEdited = {id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink,isActive,company}
 }
 editModalDiv.style.display = "none"
 let x = document.getElementById('inputFile')
@@ -138,9 +141,9 @@ let handleChange = (e)=>{
     }
     if(e.target.files[0]?.name){
         let name = e.target.files[0].name.split('.')
-        if(name[name.length-1]!=='png' && name[name.length-1]!=='jpg'){
+        if(name[name.length-1]!=='png' && name[name.length-1]!=='jpg' && name[name.length-1]!=='jpeg'){
             e.target.value = null
-            alert('Only png and jpg files are allowed')
+            alert('Only png, jpeg and jpg files are allowed')
             return
         }
     }
@@ -154,6 +157,7 @@ let handleSubmit = (e)=>{
     formData.append("name",form.name.value)
     formData.append("position", form.position.value)
     formData.append("isActive",form.isActive.value)
+    formData.append("company",form.company.value)
     formData.append("techStack",form.techStack.value)
     formData.append("passOutYear",form.passOutYear.value)
     formData.append("linkedinLink",form.linkedinLink.value)

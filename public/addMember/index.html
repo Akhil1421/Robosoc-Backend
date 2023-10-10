@@ -10,7 +10,7 @@
     <div class="main-body">
         <h2>Add Member</h2>
         <form class="form" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
-            <input type="text" placeholder="Member Name" name="name">
+            <input type="text" placeholder="Member Name" name="name" required="true">
             <select name="isActive" title="Member-Type">
                 <option value = "false">Alumni</option>
                 <option value = "true">Member</option>
@@ -30,6 +30,7 @@
                 <option value="executive">Executive</option>
             </select>
             <input type = "text" placeholder="Tech Stack" name="techStack">
+            <input type = "text" placeholder="Company" name="company">
             <input type = "file" placeholder="Image" id="inputFile"  onchange="handleChange(event)" name="imgFile">
             <input type="text" placeholder="Image" onclick="handleClick()"name="file" id="fileName" readonly="true">
             <input type = "number" placeholder="Passout Year" required = true name = "passOutYear">
@@ -53,9 +54,9 @@
             }
             if(e.target.files[0]?.name){
                 let name = e.target.files[0].name.split('.')
-                if(name[name.length-1]!=='png' && name[name.length-1]!=='jpg'){
+                if(name[name.length-1]!=='png' && name[name.length-1]!=='jpg' && name[name.length-1]!=='jpeg'){
                     e.target.value = null
-                    alert('Only png and jpg files are allowed')
+                    alert('Only png , jpeg & jpg files are allowed')
                     return
                 }
             }
@@ -71,12 +72,13 @@
             formData.append("position", form.position.value.trim())
             formData.append("techStack",form.techStack.value.trim())
             formData.append("image",file)
+            formData.append("company",form.company.value)
             formData.append("passOutYear",form.passOutYear.value)
             formData.append("linkedinLink",form.linkedinLink.value)
             formData.append("instaLink",form.instaLink.value)
             formData.append("githubLink",form.githubLink.value)
-            if(!form.name.value || !form.position.value || !form.techStack.value || !file){
-                alert("Fill all the mandatory details")
+            if(!form.name.value || !form.passOutYear.value || !file){
+                alert("Fill all the mandatory details name, passout year & image")
                 return
             }
             fetch("/api/members", {

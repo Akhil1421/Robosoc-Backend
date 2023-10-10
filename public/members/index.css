@@ -176,6 +176,7 @@ button{
     border-radius: 0.5rem;
     cursor: pointer;
     margin-top: 2vh;
+    margin-bottom: 1.5vh;
 }
 input:focus{
     outline: none;

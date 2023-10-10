@@ -20,8 +20,8 @@ const getAllMembers = async(req,res)=>{
 
 const addNewMember = async(req,res)=>{
     try {
-        let {name,position,techStack,passOutYear,instaLink,githubLink,linkedinLink,isActive} = req.body
-        if(!name || !position || !techStack || !passOutYear || isActive===undefined){
+        let {name,position,techStack,passOutYear,instaLink,githubLink,linkedinLink,isActive,company} = req.body
+        if(!name || !position || !passOutYear || isActive===undefined){
             return res.status(400).json({message : 'Full details not provided'})
         }
         if(req.files === undefined && req.files['image']===undefined){
@@ -45,7 +45,8 @@ const addNewMember = async(req,res)=>{
             passOutYear,
             instaLink,
             githubLink,
-            linkedinLink
+            linkedinLink,
+            company : company ? company : ""
         })
         return res.status(201).json({msg: 'Member added'})
     } catch (error) {
@@ -55,7 +56,7 @@ const addNewMember = async(req,res)=>{
 
 const editMember = async(req,res)=>{
     try {
-        let {id,name,position,techStack,instaLink,linkedinLink,githubLink,passOutYear,isActive} = req.body
+        let {id,name,position,techStack,instaLink,linkedinLink,githubLink,passOutYear,isActive,company} = req.body
         // console.log(req.body)
         let memberToBeEdited = await individuals.findById(id)
         if(!memberToBeEdited){
@@ -97,6 +98,9 @@ const editMember = async(req,res)=>{
         }
         if(isActive!==undefined){
             memberToBeEdited.isActive = isActive
+        }
+        if(company!==undefined){
+            memberToBeEdited.company = company
         }
         await memberToBeEdited.save()
         return res.status(200).json({msg:"Member updated successfully"})
