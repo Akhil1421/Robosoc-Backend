@@ -126,7 +126,12 @@ let handleEdit = (index)=>{
     githubInput.value = githubLink
     instaInput.value = instaLink
     companyInput.value = company
-    memberToBeEdited = {id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink,isActive,company}
+    memberToBeEdited = {id,name,position,techStack,image,passOutYear,
+        linkedinLink,githubLink,instaLink,isActive,company}
+    console.log(document.getElementsByTagName('form')[0].isActive.value)
+    if(document.getElementsByTagName('form')[0].isActive.value==="true"){
+        document.getElementsByTagName('form')[0].company.style.display = "none"
+    }
 }
 editModalDiv.style.display = "none"
 let x = document.getElementById('inputFile')
@@ -150,6 +155,16 @@ let handleChange = (e)=>{
     document.getElementById('fileName').value = e.target.files[0].name
     file = e.target.files[0]
 }
+let handleActiveChange = (e)=>{
+    let companyInput = document.getElementsByTagName('form')[0].company
+    document.getElementsByTagName('form')[0].isActive = e.target.value
+    if(e.target.value==="false"){
+        companyInput.style.display = "block"
+    }
+    else{
+        companyInput.style.display = "none"
+    }
+}
 let handleSubmit = (e)=>{
     e.preventDefault()
     let formData = new FormData()
@@ -157,7 +172,9 @@ let handleSubmit = (e)=>{
     formData.append("name",form.name.value)
     formData.append("position", form.position.value)
     formData.append("isActive",form.isActive.value)
-    formData.append("company",form.company.value)
+    if(form.isActive.value==="false"){
+        formData.append("company",form.company.value)
+    }
     formData.append("techStack",form.techStack.value)
     formData.append("passOutYear",form.passOutYear.value)
     formData.append("linkedinLink",form.linkedinLink.value)

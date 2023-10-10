@@ -29,7 +29,7 @@
             <h2>Edit Member</h2>
             <form class="form" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
                 <input type="text" placeholder="Member Name" name="name">
-                <select name="isActive" title="Member">
+                <select name="isActive" title="Member-Type" onchange="handleActiveChange(event)">
                     <option value = "false">Alumni</option>
                     <option value = "true">Member</option>
                 </select>

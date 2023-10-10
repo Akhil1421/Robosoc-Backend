@@ -96,11 +96,14 @@ const editMember = async(req,res)=>{
         if(instaLink){
             memberToBeEdited.instaLink = instaLink
         }
-        if(isActive!==undefined){
-            memberToBeEdited.isActive = isActive
-        }
         if(company!==undefined){
             memberToBeEdited.company = company
+        }
+        if(isActive!==undefined){
+            memberToBeEdited.isActive = isActive
+            if(isActive==="true" || isActive===true){
+                memberToBeEdited.company = ""
+            }
         }
         await memberToBeEdited.save()
         return res.status(200).json({msg:"Member updated successfully"})
