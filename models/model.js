@@ -7,8 +7,12 @@ const dataOfIndividual = new mongoose.Schema({
     },
     position : {
         type : String,
-        enum : ['alumni','president','vice president','secretary','programming head','treasurer','pr head','external affairs head','electroics head',
+        enum : ['president','vice president','secretary','treasurer','pr head','external affairs head',          'electronics head','mechanical head', 'programming head',
                 'core coordinator','coordinator','executive']
+    },
+    isActive : {
+        type : Boolean,
+        required : true
     },
     techStack : {
         type : String,

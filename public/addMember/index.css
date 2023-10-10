@@ -33,12 +33,18 @@ body{
     gap: 4vh;
     width: 80%;
 }
-input{
-    height: 4vh;
-    width: 100%;
+input, select{
+    height: 3vh;
+    width: 98%;
     font-family: 'now';
     text-indent: 2px;
 }
+select{
+    padding-left: 2px;
+    min-width: 100%;
+    padding: 3px;
+    min-height: 4vh;
+} 
 button{
     padding: 2px 4px;
     background-color: #fd850e;

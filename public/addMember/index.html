@@ -11,7 +11,24 @@
         <h2>Add Member</h2>
         <form class="form" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
             <input type="text" placeholder="Member Name" name="name">
-            <input type = "text" placeholder="Designation" name="position">
+            <select name="isActive" title="Member-Type">
+                <option value = "false">Alumni</option>
+                <option value = "true">Member</option>
+            </select>
+            <select name="position" title="Position">
+                <option value="president">President</option>
+                <option value="vice president">Vice-President</option>
+                <option value="secretary">General Secretary</option>
+                <option value="treasurer">Treasurer</option>
+                <option value="mechanical head">Mechanical Head</option>
+                <option value="electronics head">Electronics Head</option>
+                <option value="programming head">Programming Head</option>
+                <option value="pr head">PR Head</option>
+                <option value= "external affairs head">External Affairs Head</option>
+                <option value="core coordinator">Core Coordinator</option>
+                <option value="coordinator">Coordinator</option>
+                <option value="executive">Executive</option>
+            </select>
             <input type = "text" placeholder="Tech Stack" name="techStack">
             <input type = "file" placeholder="Image" id="inputFile"  onchange="handleChange(event)" name="imgFile">
             <input type="text" placeholder="Image" onclick="handleClick()"name="file" id="fileName" readonly="true">
@@ -50,6 +67,7 @@
             let formData = new FormData()
             let form = e.target
             formData.append("name",form.name.value)
+            formData.append("isActive",form.isActive.value)
             formData.append("position", form.position.value.trim())
             formData.append("techStack",form.techStack.value.trim())
             formData.append("image",file)
@@ -76,6 +94,13 @@
                 inputs.forEach(input => {
                     input.value = '';
                 });
+                let selects = document.querySelectorAll('select');
+                selects.forEach(select =>{
+                    let firstOption = select.querySelector('option');
+                    if (firstOption) {
+                        select.value = firstOption.value;
+                    }
+                })
                 return response.json()
             })
             .then(data => console.log(data))

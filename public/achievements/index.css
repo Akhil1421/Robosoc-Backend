@@ -29,6 +29,13 @@ body{
     gap :1vw;
     margin-left: 1vw;
     margin-right: 1vw;
+    max-height: 80vh;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+#data::-webkit-scrollbar {
+    display: none;
 }
 
 .single-achievement{

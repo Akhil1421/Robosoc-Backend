@@ -3,6 +3,7 @@ let deleteDiv = document.getElementsByClassName('modal')
 let deleteDivText = document.getElementsByClassName('delete-text')
 deleteDiv[0].style.display = "none"
 let idOfMemberToBeDeleted = ""
+let members = []
 
 let stopPropagation = (event)=>{
     event.stopPropagation()
@@ -54,19 +55,19 @@ const fetchData = () => {
         .then((res) => {
             let output = ''
             let membersData = res.data
-            membersData.forEach((data) => {
+            members = res.data
+            membersData.forEach((data, index) => {
                 output += `
                 <div class="single-member">
                     <div class="img-src">
-                        <img src="/images/${data.image}">
+                        <img src="${data.image}">
                     </div>
                     <div class="name">
                         <span>${data.name}</span>
                     </div>
                     <div class="options">
-                    <!--Edit--icon-->                        
-                        <div onclick="handleEdit('${data._id}', '${data.name}', '${data.position}', '${data.techStack}', '${data.image}', 
-                        '${data.passOutYear}', '${data.linkedinLink}', '${data.githubLink}', '${data.instaLink}')" id="edit">
+                    <!--Edit--icon-->                    
+                        <div onclick="handleEdit('${index}')" id="edit">
                             <svg xmlns="http://www.w3.org/2000/svg" id="edit" width="20" height="20" fill="#4d4848" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -100,11 +101,13 @@ fetchData()
 //edit form
 let editModalDiv = document.querySelectorAll('.modal')[1]
 let memberToBeEdited = ''
-let handleEdit = (id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink)=>{
+let handleEdit = (index)=>{
     editModalDiv.style.display = "flex"
+    const {_id:id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink,isActive} = members[index]
     const form = document.querySelector('.form');
     const nameInput = form.querySelector('input[name="name"]');
-    const positionInput = form.querySelector('input[name="position"]');
+    const positionInput = form.querySelector('select[name="position"]');
+    const isActiveInput = form.querySelector('select[name="isActive"');
     const techStackInput = form.querySelector('input[name="techStack"]');
     const filename = form.querySelector('input[name="file"]');
     const passOutYearInput = form.querySelector('input[name="passOutYear"]');
@@ -112,14 +115,15 @@ let handleEdit = (id,name,position,techStack,image,passOutYear,linkedinLink,gith
     const githubInput = form.querySelector('input[name="githubLink"]');
     const instaInput = form.querySelector('input[name="instaLink"]');
     nameInput.value = name;
-    positionInput.value = position[0].toUpperCase() + position.substr(1);
+    positionInput.value = position;
     techStackInput.value = techStack;
     filename.value = image;
+    isActiveInput.value = isActive
     passOutYearInput.value = passOutYear
     linkedinInput.value = linkedinLink
     githubInput.value = githubLink
     instaInput.value = instaLink
-    memberToBeEdited = {id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink}
+    memberToBeEdited = {id,name,position,techStack,image,passOutYear,linkedinLink,githubLink,instaLink,isActive}
 }
 editModalDiv.style.display = "none"
 let x = document.getElementById('inputFile')
@@ -149,6 +153,7 @@ let handleSubmit = (e)=>{
     let form = e.target
     formData.append("name",form.name.value)
     formData.append("position", form.position.value)
+    formData.append("isActive",form.isActive.value)
     formData.append("techStack",form.techStack.value)
     formData.append("passOutYear",form.passOutYear.value)
     formData.append("linkedinLink",form.linkedinLink.value)
