@@ -25,6 +25,7 @@ let deleteMember = ()=>{
             if(res.status===403){
                 throw new Error('Access to requested resource is for admin only. Login as admin to access the resource')
             }
+            throw new Error('Service is currently down.Try Again Later')
         }
         return res.json()})
     .then((msg)=>{
@@ -49,6 +50,7 @@ const fetchData = () => {
                 if(res.status===403){
                     throw new Error('Access to requested resource is for admin only. Login as admin to access the resource')
                 }
+                throw new Error('Service is currently down.Try Again Later')
             }
             return res.json()
         })
@@ -192,6 +194,7 @@ let handleSubmit = (e)=>{
             if(response.status===403){
                 throw new Error('Access to requested resource is for admin only. Login as admin to access the resource')
             }
+            throw new Error('Service is currently down.Try Again Later')
         }
         alert('Member Updated')
         editModalDiv.style.display = "none"
